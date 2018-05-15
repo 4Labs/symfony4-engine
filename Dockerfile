@@ -25,7 +25,7 @@ RUN set -xe \
     #
     # PHP Configuration
     #
-    && docker-php-ext-install -j$(nproc) iconv mbstring intl pdo_pgsql gd zip bcmath \
+    && docker-php-ext-install -j$(nproc) iconv mbstring intl pdo_pgsql pdo_mysql gd zip bcmath \
     && docker-php-source delete \
     && echo "Installing composer" \
     #
