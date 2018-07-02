@@ -38,9 +38,9 @@ RUN set -xe \
     #
     && npm install -g @symfony/webpack-encore \
     #
-    # Enable httpd mod_rewrite
+    # Enable httpd mod_rewrite, mod_headers, mod_expires
     #
-    && a2enmod rewrite \
+    && a2enmod rewrite headers expires\
     #
     # Build dependencies cleanup
     #
