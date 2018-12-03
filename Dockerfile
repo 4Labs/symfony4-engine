@@ -16,7 +16,7 @@ RUN set -xe \
     # Install PHP dependencies
     && apt-get update \
     && apt-get install -y git subversion openssh-client coreutils unzip libpq-dev \
-    && apt-get install -y autoconf gcc g++ libpq-dev binutils-gold libgcc1 linux-headers-amd64 make python libpng-dev libjpeg-dev libc-dev libfreetype6-dev libmcrypt-dev libicu-dev sqlite3-pcre \
+    && apt-get install -y autoconf build-essential libpq-dev binutils-gold libgcc1 linux-headers-amd64 make python libpng-dev libjpeg-dev libc-dev libfreetype6-dev libmcrypt-dev libicu-dev sqlite3-pcre libxml2-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     #
     # Install Xdebug
@@ -26,7 +26,7 @@ RUN set -xe \
     #
     # PHP Configuration
     #
-    && docker-php-ext-install -j$(nproc) iconv mbstring intl pdo_pgsql pdo_mysql gd zip bcmath \
+    && docker-php-ext-install -j$(nproc) iconv mbstring intl pdo_pgsql pdo_mysql gd zip bcmath soap \
     && docker-php-source delete \
     && echo "Installing composer" \
     #
@@ -45,7 +45,7 @@ RUN set -xe \
     #
     # Build dependencies cleanup
     #
-    && apt-get remove -y autoconf gcc g++ libpq-dev linux-headers-amd64 make libmcrypt-dev libicu-dev libpq-dev \
+    && apt-get remove -y autoconf gcc g++ libpq-dev linux-headers-amd64 make libmcrypt-dev libicu-dev libpq-dev libxml2-dev build-essential \
     && apt-get clean
 
 EXPOSE 80
